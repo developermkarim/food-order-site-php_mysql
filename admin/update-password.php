@@ -38,7 +38,7 @@
 
                 <tr>
                     <td colspan="2">
-                        <input type="hidden" name="id" value="<?php ecHO $update_id ?>">
+                        <input type="hidden" name="hiden_id" value="<?php ecHO $update_id ?>">
                         <input type="submit" name="submit" value="Change Password" class="btn-secondary">
                     </td>
                 </tr>
@@ -52,14 +52,14 @@
 
 <?php
  if (isset($_POST['submit'])) {
-                $id = $_POST['id'];
+                $id = $_POST['hiden_id'];
                 $current_password = md5($_POST['current_password']);
                 $new_password = md5($_POST['new_password']);
                 $confirm_password = md5($_POST['confirm_password']);
 
                 $sql = "SELECT * FROM tbl_admin WHERE id='$id' AND password='$current_password'";
                 $result = mysqli_query($conn,$sql);
-                if ($result == TRUE) {
+                if ($result == TRUE){
                    
                     $COUNT = mysqli_num_rows($result);
                     if ($COUNT == 1) {
