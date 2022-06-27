@@ -1,5 +1,5 @@
 <?php include('../config/constants.php');
-
+include('login-check.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
