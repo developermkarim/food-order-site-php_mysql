@@ -5,7 +5,7 @@
     <h3>Manage Catagory</h3>
     <br> <br>
 
-    <a class="btn-primary" href="#">Add Admin</a>
+    <a class="btn-primary" href="add-catagory.php">Add Catagory</a>
 <br><br>
 <table class="tbl-full">
                 <tr>
