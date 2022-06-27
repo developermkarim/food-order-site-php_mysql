@@ -86,11 +86,11 @@
     $db_insert = mysqli_query($conn,$sql) or die(mysqli_errno($conn));
     if ($db_insert == TRUE) {
 
-        $_SESSION['add'] = "successfully admin added";
+        $_SESSION['add'] = "<div class='success'>successfully admin added</div>";
         header('location:manage-admin.php');
     }else{
       
-        $_SESSION['add'] = "sorry add admin is failed";
+        $_SESSION['add'] = "<div class='error'> sorry add admin is failed </div>";
         header('location:add-admin.php');
     }
          }

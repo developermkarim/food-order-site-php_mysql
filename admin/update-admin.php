@@ -1,9 +1,22 @@
-<?php include('partials/menu.php') ?>
+<?php include('partials/menu.php');
+$update_id = $_GET['id'];
+if (isset($update_id)) {
+    $sql = "select * from tbl_admin where id ='$update_id'";
+    $sqlQUery = mysqli_query($conn,$sql);
+    while($row = mysqli_fetch_array($sqlQUery)){
+        $fullName = $row[1];
+        $userName = $row[2];
+        
+    }
+}
+?>
+
+
+
 <div class="main-content">
     <div class="wrapper">
         <h1>Add Admin</h1>
 
-        <?php if(isset($_SESSION['add'])){echo $_SESSION['add']; unset($_SESSION['add']);} ?>
         <br><br>
 
         <form action="" method="POST">
@@ -12,21 +25,14 @@
                 <tr>
                     <td>Full Name: </td>
                     <td>
-                        <input type="text" name="full_name" placeholder="Enter Your Name">
+                        <input type="text" name="full_name" placeholder="Enter Your Name" value="<?php echo $fullName ?>" >
                     </td>
                 </tr>
 
                 <tr>
                     <td>Username: </td>
                     <td>
-                        <input type="text" name="username" placeholder="Your Username">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Password: </td>
-                    <td>
-                        <input type="password" name="password" placeholder="Your Password">
+                        <input type="text" name="username" placeholder="Your Username" value="<?php echo $userName ?>">
                     </td>
                 </tr>
 
@@ -61,42 +67,24 @@
         //1. Get the Data from form
         $full_name = trim($_POST['full_name']);
         $username = trim($_POST['username']);
-        $password = trim(md5($_POST['password'])); //Password Encryption with MD5
+      //Password Encryption with MD5
 
-        if (!isset($full_name) or $full_name == "" or !isset($username) or $username == "" or !isset($password) or $password == "") {
+        if (!isset($full_name) or $full_name == "" or !isset($username) or $username == "") {
            
-            $_SESSION['emptyImput'] = "All fields must be inserted";
+            $_SESSION['update'] = "All fields must be inserted";
             // header('location:'.SITEURL.'admin/add-admin.php');
-        }else{
-
-            $selectQuery = "select username , password from tbl_admin where username = '$username' and password = '$password'";
-            $query =  mysqli_query($conn, $selectQuery);
-            $rowResult = mysqli_fetch_assoc($query);
-               
-            if ($username == $rowResult['username'] or $password == md5($rowResult['password'])) {
-               
-                $_SESSION['add'] = "Username or Password is already exists";
-            }else{
-
-                   //2. SQL Query to Save the data into database
-        $sql = "INSERT INTO tbl_admin SET full_name ='$full_name',
-        username='$username',
-        password='$password'
-    ";
-    $db_insert = mysqli_query($conn,$sql) or die(mysqli_errno($conn));
-    if ($db_insert == TRUE) {
-
-        $_SESSION['add'] = "successfully admin added";
-        header('location:manage-admin.php');
-    }else{
-      
-        $_SESSION['add'] = "sorry add admin is failed";
-        header('location:add-admin.php');
-    }
-         }
-            }
-          
-       
+        }
+          else{
+            $update_sql = "UPDATE tbl_admin SET full_name='$full_name', username='$username' where id='$update_id'";
+            $update_query = mysqli_query($conn,$update_sql);
+             if ($update_query == TRUE){
+                $_SESSION['update'] = "<div class='success'>successfully Updated Data</div>";
+                header('location:manage-admin.php');
+              }else{
+                $_SESSION['update'] = "<div class='error'>Sorry, Updated Data</div>";
+                header('location:manage-admin.php');
+              }
+          }
 }
 
 ?>
