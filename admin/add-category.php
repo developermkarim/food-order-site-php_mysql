@@ -103,7 +103,7 @@
             $filePath = strtolower(pathinfo($imageName,PATHINFO_EXTENSION));
             $validExtension = array('jpg','png','webp','jpeg');
             $imageName = "catagory_".rand(000,999).".".$filePath;
-            $destinationPath = "../images/catagory/".$imageName;
+            $destinationPath = "../images/category/".$imageName;
             if(in_array($filePath,$validExtension)){
                if ($file_size < 5000000) {
                 move_uploaded_file($temp_path,$destinationPath);
@@ -127,7 +127,7 @@
         }
         else{
 
-            $sql = "insert into tbl_catagory set 
+            $sql = "insert into tbl_category set 
             title='$catagoryName',image_name='$imageName', featured='$feature',active='$active'
             ";
             $res = mysqli_query($conn,$sql);
