@@ -7,6 +7,16 @@
 
     <a class="btn-primary" href="add-catagory.php">Add Catagory</a>
 <br><br>
+<?php 
+if(isset($_SESSION['remove'])){
+    echo $_SESSION['remove'];
+    unset($_SESSION['remove']);
+}
+if (isset($_SESSION['delete'])) {
+    echo $_SESSION['delete'];
+    unset($_SESSION['delete']);
+}
+?>
 <table class="tbl-full">
                 <tr>
                     <th>S.N.</th>
@@ -28,16 +38,16 @@
                     if ($count > 0) {
                         
                         while($row = mysqli_fetch_array($query)){
-                  
+                            $image_name = $row[2];
                 ?>
                 <tr>
                     <td><?php echo $SLNO++ ?></td>
                     <td><?php echo $row[1] ?></td>
                     <td>
                         <?php 
-                        if ($row[2] != "") {
+                        if ($image_name != "") {
                         ?>
-                        <img src="<?php echo SITEURL ?>images/catagory/<?php echo $row[2] ?>" width="50px" height="40px" alt="">
+                        <img src="<?php echo SITEURL; ?>images/catagory/<?php echo $image_name ?>" width="50px" height="40px" alt="">
                         <?php }else echo "<div class='error'>Image not Added.</div>"; ?>
                     </td>
 
@@ -45,8 +55,8 @@
                     <td><?php echo $row[4] ?></td>
                 
                     <td>
-                        <a href="<?php echo SITEURL ?>update-catagory.php?id=<?php echo $row[0] ?>" class="btn-secondary"> Update Admin</a>
-                        <a href="<?php echo SITEURL ?>delete-catagory.php?id=<?php echo $row[0] ?>&<?php $row[2]; ?>" class="btn-danger"> Delete Admin</a>
+                        <a href="<?php echo SITEURL; ?>admin/update-catagory.php?id=<?php echo $row[0] ?>" class="btn-secondary"> Update Admin</a>
+                        <a href="<?php echo SITEURL; ?>admin/delete-catagory.php?id=<?php echo $row[0];?>&image_name=<?php echo $image_name; ?>" class="btn-danger"> Delete Admin</a>
                     </td>
                 </tr>
                 <?php 
