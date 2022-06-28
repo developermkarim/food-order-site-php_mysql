@@ -114,6 +114,7 @@
             }
             else{
                 $_SESSION['upload'] = "<div class='error'>only jgp, png, jpeg are supported</div>";
+                exit;
             }
         }else{
             $imageName = "";

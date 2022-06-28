@@ -94,9 +94,9 @@
         header('location:add-admin.php');
     }
          }
-            }
+
+     }
           
-       
 }
 
 
