@@ -92,20 +92,52 @@
             $active = "NO";
         }
 
-        if ($catagoryName == "" or !isset($_POST['active']) or $feature == ""){
+        if (isset($_FILES['image']['name'])){
+            
+            $imageName = $_FILES['image']['name'];
+            $fileType = $_FILES['image']['type'];
+            $file_size = $_FILES['image']['size'];
+            $temp_path = $_FILES['image']['tmp_name'];
+
+            //another way to get path $filePath = end(explode(',',$imageName));
+            $filePath = strtolower(pathinfo($imageName,PATHINFO_EXTENSION));
+            $validExtension = array('jpg','png','webp','jpeg');
+            $imageName = "catagory_".rand(000,999).".".$filePath;
+            $destinationPath = "../images/catagory/".$imageName;
+            if(in_array($filePath,$validExtension)){
+               if ($file_size < 5000000) {
+                move_uploaded_file($temp_path,$destinationPath);
+               }
+               else{
+                $_SESSION['upload'] = "<div class='error'>file is too large</div>";
+               }
+            }
+            else{
+                $_SESSION['upload'] = "<div class='error'>only jgp, png, jpeg are supported</div>";
+            }
+        }else{
+            $imageName = "";
+        }
+
+       // Image Regular expression close here
+
+         if ($catagoryName == "" or !isset($_POST['active']) or $feature == ""){
            $_SESSION['no-add-catagory'] = "<div class='error'>Plz, Insert the catagory products </div>";
         }
         else{
 
-            $sql = "INSERT INTO tbl_catagory SET
-            title='$catagoryName', featured='$feature', 
-            active='$active'
+            $sql = "insert into tbl_catagory set 
+            title='$catagoryName',image_name='$imageName', featured='$feature',active='$active'
             ";
-            $query = mysqli_query($conn, $sql);
-            if ($query == true) {
-                
-               $_SESSION['add'] = "<div class='success'>Catagory added into table. </div>";
+            $res = mysqli_query($conn,$sql);
+            if ($res == true) {
+               $_SESSION['add'] = "<div class='success'>all data inserted </div>";
+               header('location:'.SITEURL.'admin/manage-category.php');
+            }else{
+                $_SESSION['no-data-catagory'] = "<div class='error'>all data inserted </div>";
+                header('location:'.SITEURL.'admin/add-catagory.php');
             }
         }
+
   }
 ?>
