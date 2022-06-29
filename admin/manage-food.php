@@ -14,13 +14,60 @@
                 unset($_SESSION['upload']);
             }
         ?>
-<table class="tbl-full">
-                <tr>
-                    <th>S.N.</th>
-                    <th>Full Name</th>
-                    <th>Username</th>
-                    <th>Actions</th>
-                </tr>
+            <table class="tbl-full">
+                    <tr>
+                        <th>S.N.</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                        <th>Featured</th>
+                        <th>Active</th>
+                        <th>Actions</th>
+                    </tr>
+
+                    
+                    <?php 
+                    $select_sql = "SELECT * FROM tbl_food";
+                    $query = mysqli_query($conn,$select_sql);
+                    if ($query == true) {
+                        $SLNo = 1;
+                       $count = mysqli_num_rows($query);
+                        if ($count > 0) {
+                            
+                            while($row = mysqli_fetch_assoc($query)){
+                                $title = $row['title'];
+                                $price = $row['price'];
+                                $image = $row['image_name'];
+                                $featured = $row['featured'];
+                                $active = $row['active'];
+                            }
+                        }
+                    }
+                    ?>
+                    <tr>
+                        <td><?php echo $SLNo++; ?></td>
+                        <td><?php echO $title; ?></td>
+
+                        <td>
+                            <?php 
+                            if ($image != "") {
+                                
+                            
+                            ?>
+                            <img src="<?php echO SITEURL; ?>images/foods/<?php echO $image; ?>" alt="Image From Database">
+                            <?php 
+                            }
+                            else{
+                                $_SESSION['not-found'] = "<div class='success'>Images not found</div>";
+                            }
+                            ?>
+                        </td>
+
+                        <td><?php echO $featured; ?></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
 
                 <tr>
                     <td>1</td>
