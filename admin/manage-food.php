@@ -35,18 +35,18 @@
                         if ($count > 0) {
                             
                             while($row = mysqli_fetch_assoc($query)){
+                                $id =  $row['id'];
                                 $title = $row['title'];
                                 $price = $row['price'];
                                 $image = $row['image_name'];
                                 $featured = $row['featured'];
                                 $active = $row['active'];
-                            }
-                        }
-                    }
+                     
                     ?>
                     <tr>
                         <td><?php echo $SLNo++; ?></td>
                         <td><?php echO $title; ?></td>
+                        <td><?php echO $price; ?></td>
 
                         <td>
                             <?php 
@@ -54,7 +54,7 @@
                                 
                             
                             ?>
-                            <img src="<?php echO SITEURL; ?>images/foods/<?php echO $image; ?>" alt="Image From Database">
+                            <img src="<?php echO SITEURL; ?>images/foods/<?php echO $image; ?>" alt="unseen Image" width="60" height="50">
                             <?php 
                             }
                             else{
@@ -64,20 +64,19 @@
                         </td>
 
                         <td><?php echO $featured; ?></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                <tr>
-                    <td>1</td>
-                    <td>Mahmodul Karim</td>
-                    <td>DeveloperMkarim</td>
-                    <td>
-                        <a href="#" class="btn-secondary"> Update Admin</a>
-                        <a href="#" class="btn-danger"> Delete Admin</a>
-                    </td>
+                        <td><?php ecHO $active; ?></td>
+                        <td>
+                        <a href="<?php echo SITEURL; ?>update-food.php?id=<?php echo $id; ?>" class="btn-secondary"> Update Admin</a>
+                        <a href="<?php echo SITEURL;?>delete-food.php?id=<?php echo $id ?>&image_name=<?php echo $image; ?>" class="btn-danger"> Delete Admin</a>
+                        </td>
+                  
                 </tr>
+                <?php
+                       }
+                    }
+                }
+                ?>
+
             </table>
     </div>
 </div>

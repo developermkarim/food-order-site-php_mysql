@@ -28,14 +28,14 @@
                 <tr>
                     <td>Description: </td>
                     <td>
-                        <textarea name="description" cols="30" rows="5" placeholder="Description of the Food."></textarea>
+                        <textarea name="description" cols="23" rows="2" placeholder="Description of the Food."></textarea>
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Price: </td>
+                    <td>Price: &nbsp; &nbsp; $</td>
                     <td>
-                        <input type="number" name="price">
+                     <input type="number" name="price">
                     </td>
                 </tr>
 
@@ -50,7 +50,7 @@
                     <td>Category: </td>
                     <td>
                         <select name="category">
-
+                        <option value=""> Select any of Catagory </option>
                           <?php
                          
                                 //Create PHP Code to display categories from Database
@@ -65,14 +65,13 @@
                                     while($row = mysqli_fetch_assoc($result)){
                                         $id = $row['id'];
                                         $catagory = $row['title'];
-    
-                                    }
                                     ?>
-                                    
+                                   
                                     <option value="<?php echo $id; ?>"><?php echo $catagory; ?></option>
 
                                     <?php
                                 }
+                            }
                             else{
                                
                            ?>
@@ -139,11 +138,12 @@
                     
                     $image_name = $_FILES['image']['name'];
                     if ($image_name != "") {
-                       
-                        $path = "../images/foods/".$image_name;
-                        $extension = explode('.',$image_name);
-                        $image_name = "food-".rand(000,999).".".$extension[1];
+                      
+                        $extension = end(explode('.',$image_name));
+                        $image_name = "food-".rand(000,999).".".$extension;
                         $tempName = $_FILES['image']['tmp_name'];
+                         // Random Image will be upload in both DB & Images/Foods folder path.
+                        $path = "../images/foods/".$image_name;
                         $upload = move_uploaded_file($tempName,$path);
                         if ($upload == false) {
                             
