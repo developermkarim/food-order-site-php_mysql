@@ -7,6 +7,13 @@
 
     <a class="btn-primary" href="add-food.php">Add Food</a>
 <br><br>
+<?php 
+            if(isset($_SESSION['upload']))
+            {
+                echo $_SESSION['upload'];
+                unset($_SESSION['upload']);
+            }
+        ?>
 <table class="tbl-full">
                 <tr>
                     <th>S.N.</th>
