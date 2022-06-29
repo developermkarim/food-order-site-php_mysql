@@ -55,6 +55,7 @@
         }
     }
     else
+    
     {
         //redirect to Manage Category Page
         header('location:'.SITEURL.'admin/manage-category.php');

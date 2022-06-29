@@ -67,7 +67,7 @@
                             {
                                 //Display the Image
                                 ?>
-                                <img src="<?php echo SITEURL; ?>images/category/<?php echo $current_image; ?>" width="150px">
+                                <img src="<?php echo SITEURL; ?>images/category/<?php echo $current_image; ?>" width="50px" height="40px">
                                 <?php
                             }
                             else
