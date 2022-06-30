@@ -25,6 +25,6 @@ This is a Restaurant food order Website, designed using html and css. It was dev
 
 ## Follow Me on
 1. LinkedIn - [Developermkarim](https://www.linkedin.com/ "Mahmodul Karim on LinkedIn")
-2. Instagram - [@vijaythapa.code](https://www.instagram.com/web_developer_mkarim/ "Mahmodul Karim on Instagram")
-3. Facebook - [@thevijaythapa](https://www.facebook.com/M.KarimPHP/ "Mahmodul Karim on Facebook")
-5. Twitter - [@thevijaythapa](https://twitter.com/MahmodulKarim11 "Mahmodul Karim on Twitter")
+2. Instagram - [@web_developer_mkarim](https://www.instagram.com/web_developer_mkarim/ "Mahmodul Karim on Instagram")
+3. Facebook - [@M.KarimPHP](https://www.facebook.com/M.KarimPHP/ "Mahmodul Karim on Facebook")
+5. Twitter - [@MahmodulKarim11](https://twitter.com/MahmodulKarim11 "Mahmodul Karim on Twitter")
