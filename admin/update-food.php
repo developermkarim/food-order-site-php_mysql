@@ -200,89 +200,10 @@
              $update_query = mysqli_query($conn,$update_sql);
              if ($update_query == true) {
                 $_SESSION['update'] = "<div class='success'> all Data successfully Updated</div>";
-                header('location:'.SITEURL.'admin/manage-food.php');
                 die();
              }
          }
-        //  //CHeck whether the button is clicked or not
-        //  if(isset($_POST['submit']))
-        //  {
-        //      //Add the Food in Database
-        //      //echo "Clicked";
-             
-        //      //1. Get the DAta from Form
-        //      $title = $_POST['title'];
-        //      $description = $_POST['description'];
-        //      $price = $_POST['price'];
-        //      $category = $_POST['category'];
-
-        //      //Check whether radion button for featured and active are checked or not
-        //       if (isset($_POST['featured'])) {
-        //          $featured = $_POST['featured'];
-        //        }else{
-        //         $featured = "No";
-        //        }
-        //         if (isset($_POST['active'])) {
-        //            $active = $_POST['active'];
-        //          }else{
-        //             $active = "No";
-        //          }
-
-        //          if (isset($_FILES['image'])) {
-                    
-        //             $image_name = $_FILES['image']['name'];
-        //             if ($image_name != "") {
-                      
-        //                 $extension = end(explode('.',$image_name));
-        //                 $image_name = "food-".rand(000,999).".".$extension;
-        //                 $tempName = $_FILES['image']['tmp_name'];
-        //                  // Random Image will be upload in both DB & Images/Foods folder path.
-        //                 $path = "../images/foods/".$image_name;
-        //                 $upload = move_uploaded_file($tempName,$path);
-        //                 if ($upload == false) {
-                            
-        //                     $_SESSION['upload'] = "<div class='error'>Sorry, Food Image not uploaded</div>";
-        //                 }else{
-                            
-        //                 }
-        //             }
-        //             else{
-        //                 $_SESSION['image-mo-found'] = "<div class='success'>Sorry, Image not found</div>";
-        //             }
-        //          }else{
-        //             $image_name = "";
-        //          }
-
-        //          //3. Insert Into Database
-        //         //Create a SQL Query to Save or Add food
-        //         // For Numerical we do not need to pass value inside quotes '' But for string value it is compulsory to add quotes ''
-        //      /*    $sql2 = "INSERT INTO tbl_food SET 
-        //             title = '$title',
-        //             description = '$description',
-        //             price = $price,
-        //             image_name = '$image_name',
-        //             category_id = $category,
-        //             featured = '$featured',
-        //             active = '$active'
-        //         "; */
-
-                 
-        //          $food_sql = "INSERT INTO tbl_food SET 
-        //         title = '$title',
-        //         description = '$description',
-        //         price = '$price', image_name = '$image_name',
-        //         category_id = $category,
-        //          featured = '$featured',
-        //          active = '$active'
-        //          ";
-        //          $query = mysqli_query($conn,$food_sql);
-        //          if ($query == true) {
-        //            $_SESSION['upload'] = "<div class='success'>Data Successfullly uploaded</div>";
-        //            header('location:'.SITEURL.'admin/manage-food.php');
-        //          }else{
-        //             $_SESSION['error'] = "<div class='error'>Data not uploaded</div>";
-        //          }
-        //  }
+        
         ?>
         
     </div>
