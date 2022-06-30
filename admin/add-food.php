@@ -139,8 +139,8 @@
                     $image_name = $_FILES['image']['name'];
                     if ($image_name != "") {
                       
-                        $extension = end(explode('.',$image_name));
-                        $image_name = "food-".rand(000,999).".".$extension;
+                        $extension = explode('.',$image_name);
+                        $image_name = "food-".rand(000,999).".".end($extension);
                         $tempName = $_FILES['image']['tmp_name'];
                          // Random Image will be upload in both DB & Images/Foods folder path.
                         $path = "../images/foods/".$image_name;
