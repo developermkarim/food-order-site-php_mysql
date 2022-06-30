@@ -13,6 +13,21 @@
                 echo $_SESSION['upload'];
                 unset($_SESSION['upload']);
             }
+            if(isset($_SESSION['fail-remove']))
+            {
+                echo $_SESSION['fail-remove'];
+                unset($_SESSION['fail-remove']);
+            }
+            if(isset($_SESSION['no-upload']))
+            {
+                echo $_SESSION['no-upload'];
+                unset($_SESSION['no-upload']);
+            }
+            if(isset($_SESSION['upload']))
+            {
+                echo $_SESSION['upload'];
+                unset($_SESSION['upload']);
+            }
         ?>
             <table class="tbl-full">
                     <tr>
@@ -58,7 +73,7 @@
                             <?php 
                             }
                             else{
-                                $_SESSION['not-found'] = "<div class='success'>Images not found</div>";
+                                echo "<div class='success'>Images not found</div>";
                             }
                             ?>
                         </td>
@@ -66,8 +81,8 @@
                         <td><?php echO $featured; ?></td>
                         <td><?php ecHO $active; ?></td>
                         <td>
-                        <a href="<?php echo SITEURL; ?>update-food.php?id=<?php echo $id; ?>" class="btn-secondary"> Update Admin</a>
-                        <a href="<?php echo SITEURL;?>delete-food.php?id=<?php echo $id ?>&image_name=<?php echo $image; ?>" class="btn-danger"> Delete Admin</a>
+                        <a href="<?php echo SITEURL; ?>admin/update-food.php?id=<?php echo $id; ?>" class="btn-secondary"> Update Admin</a>
+                        <a href="<?php echo SITEURL;?>admin/delete-food.php?id=<?php echo $id ?>&image_name=<?php echo $image; ?>" class="btn-danger"> Delete Admin</a>
                         </td>
                   
                 </tr>
