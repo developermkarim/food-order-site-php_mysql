@@ -28,6 +28,16 @@
                 echo $_SESSION['upload'];
                 unset($_SESSION['upload']);
             }
+            if(isset($_SESSION['remove-food-id']))
+            {
+                echo $_SESSION['remove-food-id'];
+                unset($_SESSION['remove-food-id']);
+            }
+            if(isset($_SESSION['remove-food-img']))
+            {
+                echo $_SESSION['remove-food-img'];
+                unset($_SESSION['remove-food-img']);
+            }
         ?>
             <table class="tbl-full">
                     <tr>
