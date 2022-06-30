@@ -6,12 +6,12 @@ if (isset($_GET['id'])) {
     
     $category_id = $_GET['id'];
 
-    $sql = "SELECT title from tbl_category where id=$category_id";
-    $query = mysqli_query($conn,$sql);
-    if (mysqli_num_rows($query)) {
+    $sql1 = "SELECT title from tbl_category where id=$category_id";
+    $query1 = mysqli_query($conn,$sql1);
+    if (mysqli_num_rows($query1)) {
         
-        $row = mysqli_fetch_assoc($query);
-        $title = $row['title'];
+        $rowres = mysqli_fetch_assoc($query1);
+        $title = $rowres['title'];
     }
 }
 
@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
     <section class="food-search text-center">
         <div class="container">
             
-            <h2>Foods on <a href="foods.php?id=<?php echo $id;?>" class="text-white"><?php echo $title; ?></a></h2>
+            <h2>Foods on <a href="foods.php" class="text-white"><?php echo $title; ?></a></h2>
 
         </div>
     </section>
