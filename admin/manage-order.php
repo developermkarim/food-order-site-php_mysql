@@ -53,19 +53,19 @@
                    <td><?php echo $order_date ; ?></td>
                    <td><?php
                    if ($status == "Ordered") {
-                    echo "<label class=''>$status</label>" ;
+                    echo "<labelstyle='color: orange;>$status</label>" ;
                    }elseif ($status == "On Delivery") {
                     echo "<label style='color: orange;'>$status</label>" ;
-                   }elseif($status = "Delivered"){
+                   }elseif($status == "Delivered"){
                     echo "<label style='color: green;'>$status</label>" ;
-                   }elseif($status == "Calcelled"){
+                   }elseif($status == "Cancelled"){
                     echo "<label style='color: red;'>$status</label>" ;
                    }
                      ?></td>
                    <td><?php echo $customer_name ; ?></td>
                    <td><?php echo $customer_contact ; ?></td>
                    <td><?php echo $customer_email ; ?></td>
-                   <td><?php echo ($customer_address)  ; ?></td>
+                   <td><?php echo $customer_address; ?></td>
                   
                         <td> <a href="<?php echo SITEURL; ?>admin/update-order.php?id=<?php echo $id;?>" class="btn-secondary"> Update Admin</a></td>
                        
