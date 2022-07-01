@@ -17,7 +17,12 @@
     <section class="categories">
         <div class="container">
             <h2 class="text-center">Explore Foods</h2>
-
+            <?php
+             if (isset($_SESSION['order'])) {
+                echo $_SESSION['order'];
+                unset($_SESSION['order']);
+              }
+            ?>
             <?php
             $sql = "SELECT * FROM tbl_category where active='Yes' and featured=-'Yes' limit 6";
             $query = mysqli_query($conn, $sql);
@@ -59,6 +64,7 @@
     <section class="food-menu">
         <div class="container">
             <h2 class="text-center">Food Menu</h2>
+            
             <?php
              $food_sql = "SELECT * FROM tbl_food WHERE active='Yes' and featured='Yes' limit 6";
              $food_query = mysqli_query($conn, $food_sql);
@@ -95,7 +101,7 @@
                     </p>
                     <br>
 
-                    <a href="0#" class="btn btn-primary">Order Now</a>
+                    <a href="<?php echo SITEURL; ?>/order.php?id=<?php echo $id ?>" class="btn btn-primary">Order Now</a>
                 </div>
             </div>
 <?php

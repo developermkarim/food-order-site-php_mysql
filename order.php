@@ -1,24 +1,56 @@
 <?php include('partials-front/menu.php'); ?>
 
+<?php
+ if (isset($_GET['id'])) {
+    $get_id = $_GET['id'];
+    $get_sql= "SELECT * FROM tbl_food where id=$get_id";
+    $get_query = mysqli_query($conn, $get_sql);
+    $getCount = mysqli_num_rows($get_query);
+    if ($getCount > 0) {
+       $Getrow = mysqli_fetch_array($get_query);
+        $id =  $Getrow['id'];
+        $title = $Getrow['title'];
+        $description = $Getrow['description'];
+        $price = $Getrow['price'];
+        $image = $Getrow['image_name'];
+       }
+       else{
+        header('location:'.SITEURL);
+       }
+    }else{
+        header('location:'.SITEURL);
+    }
+  
+?>
     <!-- fOOD sEARCH Section Starts Here -->
     <section class="food-search">
         <div class="container">
+            <?php
+            if(isset($_SESSION['no-order'])){
+                echo $_SESSION['no-order'];
+                unset($_SESSION['no-order']);
+            }
             
+            ?>
+
             <h2 class="text-center text-white">Fill this form to confirm your order.</h2>
 
-            <form action="#" class="order">
+
+            <form action="" class="order" method="POST">
                 <fieldset>
                     <legend>Selected Food</legend>
 
                     <div class="food-menu-img">
-                        <img src="images/menu-pizza.jpg" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
+                        <img src="<?php echo SITEURL; ?>/images/foods/<?php echo $image; ?>" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
                     </div>
     
                     <div class="food-menu-desc">
-                        <h3>Food Title</h3>
-                        <p class="food-price">$2.3</p>
-
+                        <h3><?php echo $title; ?></h3>
+                        <input type="hidden" value="<?php echo $title; ?>" name="food">
+                        <p class="food-price">$ <?php echo $price; ?></p>
+                        <input type="hidden" name="price" value="<?php echo $price ?>">
                         <div class="order-label">Quantity</div>
+                      
                         <input type="number" name="qty" class="input-responsive" value="1" required>
                         
                     </div>
@@ -44,8 +76,53 @@
 
             </form>
 
-        </div>
+    <?php
+     if (isset($_POST['submit'])) {
+        $food = $_POST['food'];
+        $quantity = $_POST['qty'];
+        $insertprice = $_POST['price'];
+        $totalPrice = $quantity * $insertprice;
+        $order_date = date("Y-m-d h:i:sa"); //Order DAte date("Y-m-d h:i:sa");
+        $status = "Ordered";  // Ordered, On Delivery, Delivered, Cancelled
+
+        $customer_name = $_POST['full-name'];
+        $customer_contact = $_POST['contact'];
+        $customer_email = $_POST['email'];
+        $customer_address = $_POST['address'];
+
+
+        //Save the Order in Databaase
+        //Create SQL to save the data
+             $sql = "INSERT INTO tbl_order SET 
+                       food = '$food',
+                        price = $insertprice,
+                        qty = $quantity,
+                        total = $totalPrice,
+                        order_date = '$order_date',
+                        status = '$status',
+                        customer_name = '$customer_name',
+                        customer_contact = '$customer_contact',
+                        customer_email = '$customer_email',
+                        customer_address = '$customer_address'
+                    ";
+                //    echo $sql , die(); it is check for data insert check.
+                    $query = mysqli_query($conn, $sql);
+                    $count = mysqli_num_rows($query);
+                    if ($query == true) {
+                        $_SESSION['order'] = "<div class='success text-center'>Food Ordered Successfully.</div>";
+                        header('location:'.SITEURL);
+                    }else{
+                          //Failed to Save Order
+                          $_SESSION['no-order'] = "<div class='error text-center'>Failed to Order Food.</div>";
+                          header('location:'.SITEURL);
+                    }
+      }
+    ?>
+
+
+</div>
     </section>
     <!-- fOOD sEARCH Section Ends Here -->
+
 
     <?php include('partials-front/footer.php'); ?>
