@@ -22,6 +22,8 @@
     }
   
 ?>
+
+
     <!-- fOOD sEARCH Section Starts Here -->
     <section class="food-search">
         <div class="container">
@@ -109,7 +111,9 @@
                     $query = mysqli_query($conn, $sql);
                     $count = mysqli_num_rows($query);
                     if ($query == true) {
-                        $_SESSION['order'] = "<div class='success text-center'>Food Ordered Successfully.</div>";
+
+                        $_SESSION['order'] = "<div class='success text-center'>$customer_name Ordered the food Successfully.</div>";
+                       
                         header('location:'.SITEURL);
                     }else{
                           //Failed to Save Order

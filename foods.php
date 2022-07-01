@@ -22,11 +22,10 @@
 
             
                 <?php
-                $sql = "SELECT * FROM tbl_food where active='Yes'";
+                $sql = "SELECT * FROM tbl_food where active = 'Yes'";
                 $query = mysqli_query($conn,$sql);
                 $count = mysqli_num_rows($query);
                 if ($count > 0) {
-                    
                     while($row = mysqli_fetch_array($query)){
                         $id = $row[0];
                         $title = $row[1];
@@ -36,7 +35,6 @@
                         $category_id = $row[5];
                         $featured = $row[6];
                         $active = $row[7];
-                
                 ?>
                 <div class="food-menu-box">
                 <div class="food-menu-img">
@@ -52,6 +50,7 @@
                     <br>
 
                     <a href="<?php echo SITEURL; ?>/order.php?id=<?php echo $id ?>" class="btn btn-primary">Order Now</a>
+                   
                 </div>
                 </div>
                 <?php

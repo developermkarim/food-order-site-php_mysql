@@ -1,4 +1,8 @@
-<?php include('partials-front/menu.php'); ?>
+<?php include('partials-front/menu.php');?>
+
+
+<!-- This is for status starting  -->
+<!-- This is for status End  -->
 
     <!-- fOOD sEARCH Section Starts Here -->
     <section class="food-search text-center">
@@ -80,6 +84,15 @@
                     $active = $row['active'];
             ?>
            
+           <?php
+$status_query = mysqli_query($conn, "SELECT * from tbl_order where food = '$title'");
+if (mysqli_num_rows($status_query) > 0) {
+$statusRow = mysqli_fetch_assoc($status_query);
+$_SESSION['status'] = $statusRow['status'];
+$_SESSION['qty'] = $statusRow['qty'];
+
+}
+?>
            <div class="food-menu-box">
                 <div class="food-menu-img">
                     <?php
@@ -97,24 +110,24 @@
                     <h4><?php echo $title; ?></h4>
                     <p class="food-price">$ <?php echo $price; ?></p>
                     <p class="food-detail">
-                       <?php echo $description; ?>
+                       <?php echo $description; 
+                       ?>
                     </p>
                     <br>
 
-                    <a href="<?php echo SITEURL; ?>/order.php?id=<?php echo $id ?>" class="btn btn-primary">Order Now</a>
+                    <a href="<?php echo SITEURL; ?>/order.php?id=<?php echo $id ?>" class="btn btn-primary">Order Now</a> <span style="background-color:green;color:white;font-weight:600;padding: 1% 2%;border: none;font-size: 1rem;border-radius: 5px;">
+                        <?php echo $_SESSION['status'];?></span> <span style="background-color:red;color:white;font-weight:600; padding:1% 2%;border: none;font-size: 1rem;border-radius: 5px;"> <?php echo $_SESSION['qty']; ?> </span>
                 </div>
-            </div>
-<?php
-                }
-            }else{
-                echo "No Food Found";
-            }
-?>
+                </div>
+                <?php
+                   }
+                        }else{
+                            echo "No Food Found";
+                        }
+            ?>
 
            
             <div class="clearfix"></div>
-
-            
 
         </div>
 
