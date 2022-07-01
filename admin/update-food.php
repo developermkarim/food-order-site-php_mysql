@@ -17,6 +17,7 @@
                                 $food_id =  $row['id'];
                                 $title = $row['title'];
                                 $description = $row['description'];
+                                $food_catgory_id = $row['category_id'];
                                 $price = $row['price'];
                                 $image = $row['image_name'];
                                 $featured = $row['featured'];
@@ -87,7 +88,13 @@
                                $catagory_name = $cataogry_result['title'];
                               
                             ?>
-                        <option  value="<?php echo $catagory_id; ?>"><?php echo $catagory_name ?> </option>
+
+                            <!-- This Option selected item dynamically selected -->
+                        <option <?php 
+                        if ($food_catgory_id == $catagory_id) {
+                          echo "selected";
+                        }
+                        ?> value="<?php echo $catagory_id; ?>" ><?php echo $catagory_name ?> </option>
                          <?php
                           }
                         }
