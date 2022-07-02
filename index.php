@@ -115,7 +115,7 @@ $_SESSION['qty'] = $statusRow['qty'];
                     </p>
                     <br>
 
-                    <a href="<?php echo SITEURL; ?>/order.php?id=<?php echo $id ?>" class="btn btn-primary">Order Now</a> <span style="background-color:green;color:white;font-weight:600;padding: 1% 2%;border: none;font-size: 1rem;border-radius: 5px;">
+                    <a onclick="return confirm('plz confirm login to order')" href="<?php echo SITEURL; ?>/order.php?id=<?php echo $id ?>" class="btn btn-primary">Order Now</a> <span style="background-color:green;color:white;font-weight:600;padding: 1% 2%;border: none;font-size: 1rem;border-radius: 5px;">
                         <?php echo $_SESSION['status'];?></span> <span style="background-color:red;color:white;font-weight:600; padding:1% 2%;border: none;font-size: 1rem;border-radius: 5px;"> <?php echo $_SESSION['qty']; ?> </span>
                 </div>
                 </div>

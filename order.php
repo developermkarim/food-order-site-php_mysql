@@ -1,4 +1,6 @@
-<?php include('partials-front/menu.php'); ?>
+<?php include('partials-front/menu.php');
+include('user-reg-log/login-check.php');
+?>
 
 <?php
  if (isset($_GET['id'])) {
